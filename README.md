@@ -54,21 +54,54 @@ https://download.iiab.io/
 
 During the install be sure to select the Small option and make sure the following options are set to False, False
 
-    kolibri, maps
+    kolibri, maps, matomo
 
 and make sure these are set to true, true.
 
-    calibre-web, calibre, Captive Portal
+    calibre-web, calibre, Captive Portal, kiwix, awstats, 
 
 - Why keep Kiwix? 
-    - you can turn this off if you really want to.
+    - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
 
 
-And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal.
+set the iiab)home_url to /books/ to make sure it goes to calibre-web
+And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal. change the pi_swap_file_size size to 512 if planning to use pi zero/2 W. 
+maybe change the hostname and domain to something clever (since it won't ever be on the internet anyway)
+Set captiveportal_splsh_page to /books/ to make sure it goes to calibre-web
 
 Let it run until it's done installing.
 
 ## Modifications to the systems
+### Loading the library
+    if you already have an existing library of books you're wanting to host, put them on a USB drive and put that drive into your Pi.
+    #### if you already have them processed through Calibre then drop them in the /library/calibre directory. 
+    #### if they need to be processed first then open up localhost:8080 on your Pi web browser and login as admin. (Default Admin pw is changeme, you can log into Calibre and change it here. ) Select the Calibre library button and you should see a copy of Franz Kakfa's Metamorphosis. click the + icon in the top banner and follow the insturctions on loading new books. 
+
+### Changes to the IIAB Admin panel
+Admin user is iiab-admin, and password is the one set up on initial installation. 
+Go to Content Menus, then content item list. Drag over every option in Menu Items in Current Menu except "insert a usb flash drive here" and "calibre-web" into Available Menu Item Definitions. 
+Then click Save Menu, *then* click Update Home Menu on the left side. This is for any user that makes it past the /books/ url onto the proper IIAB home screen. 
+### Changes to the Calibre admin
+    Go to http://banned.books:8080 to get to the Calibre app. Default Admin pw is changeme, you can log into Calibre and change it here. 
+    This calibre app is where you can upload new books into the libaray. 
+
+### Changes to the Calibre-Web panel
+Click the Setting icon_Admin (it will look like a little speedomator in a car)
+    [check what the pw/username is on default]
+Change the database location: it's currently set to /library/calibre-web, and we need to change it to /library/calibre. click on the folder icon next to the .. at the top of the popup. this takes you up a level in the pi directory structure. 
+then click on the folder icon labeled calibre. there should be a folder named Franz Kafka and a metadata.db file in this directory. Click the select button to change the location of the calibre-web database. Hit Save and then OK.
+
+Click on the same Speedomator Admin button and click basic configuration. Scroll down to security settings and uncheck user password policy. This lets you set weak passwords for the admin user, if you want to chagne the username/pw. 
+Click on the same Speedomator Admin button and click UI configuration. under View Configuration I change the name from Internet in a Box to Read Banned Books, change number of random books to 2, and change the theme to caliBlur! Dark Theme. If you plan on setting up individual users other than the Admin and Guest think about if you want them to be able to edit public bookshelves and to delete books. 
+Once you hit Save on the theme change the layout will look vastly different, but all the options are still there, you may need to look around for them. 
+
+
+
+## Code Changes
+### Splash screen changes
+### Home page changes
+
+
 
 - Changes in the box Admin
     - change name and theme for calibre-web to "elibrary" or something similar
