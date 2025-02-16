@@ -98,8 +98,22 @@ Once you hit Save on the theme change the layout will look vastly different, but
 
 
 ## Code Changes
+These code changes are best done if you have a little knowledge of HTML and JS, and are primarlly done to remove IIAB branding to make a more unifed user experience. 
+
 ### Splash screen changes
+These are found in mac.template and simple.template files in the /opt/iiab/captiveportal/ directory
+You will also need to update the text being pulled in from the capture-wsgi.py file, or you can just directly overwrite the text and hard code it into the template file. 
 ### Home page changes
+these changes are done in case anyone goes to the /home/ screen
+customize /library/www/html/home/index.html and the CSS files in /library/www/html/js-menu/menu-files/css/js-menu.css and the js-menu-item.css. 
+I also swap out the homepage image with something more appriprate. 
+You may need to use the Move CLI command to move an image into the image folder
+'' To move a file from one folder to another with mv, remember the syntax mv <source> <destination>. For instance, to move the file example.txt into your Documents directory:
+
+$ touch example.txt
+$ mv example.txt ~/Documents '' remember to use Sudo
+
+
 
 
 
