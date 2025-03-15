@@ -32,7 +32,7 @@ This eLibrary is designed to run on the older Raspberry Pi 3 and 3 B+, and the l
 This answer comes down to file formats. Books will generally be in two formats, epubs and PDFs. 
 epub files are usually pretty small, and you can fit hundreds of epub books in a couple of GBs of space. 
 PDFs can also be small, but can quickly balloon in size if there a lots of scanned images. 
-Be aware that the IIAB install will take between 10 and 12 GB, so expect to use at least a 32GB microSD card for your libaray. 
+Be aware that the IIAB install will take between 6 and 10 GB, so expect to use at least a 32GB microSD card for your libaray. 
 
 ### Step one:
  install rapsberry pi os on the fastest Pi you've got (this will make the install much faster).
@@ -54,11 +54,11 @@ https://download.iiab.io/
 
 During the install be sure to select the Small option and make sure the following options are set to False, False
 
-    kolibri, maps, matomo
+    kolibri, osm_vector_maps, matomo
 
 and make sure these are set to true, true.
 
-    calibre-web, calibre, Captive Portal, kiwix, awstats, 
+    calibre-web, calibre, captiveportal, kiwix, awstats, 
 
 - Why keep Kiwix? 
     - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
