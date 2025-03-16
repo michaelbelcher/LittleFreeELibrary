@@ -45,9 +45,10 @@ First off, you need to make some decisions.
 
 - How big of a library do you want to host?
 
-
-    - This answer comes down to file formats. Books will generally be in two formats, epubs and PDFs. Epub files are usually pretty small, and you can fit hundreds of epub books in a couple of GBs of space. PDFs can also be small, but can quickly balloon in size if there a lots of scanned images. Be aware that the IIAB install will take between 10 and 12 GB, so use at least a 32GB microSD card for your library.
-
+This answer comes down to file formats. Books will generally be in two formats, epubs and PDFs. 
+epub files are usually pretty small, and you can fit hundreds of epub books in a couple of GBs of space. 
+PDFs can also be small, but can quickly balloon in size if there a lots of scanned images. 
+Be aware that the IIAB install will take between 6 and 10 GB, so expect to use at least a 32GB microSD card for your libaray. 
 
 ### Step one:
  Install the latest version of the Raspberry Pi OS on the fastest Pi you've got (this will make the install much faster).
@@ -72,44 +73,23 @@ During the install be sure to select the Small option. You'll be asked to run `s
  Make sure the following options are set to `_install: False` and `_enabled: False`.
 
     kolibri
-    maps 
+    osm_vector_maps 
     matomo
 
 and make sure these are set to `_install: True` and `_enabled: True`.
 
-    calibre-web, 
-    calibre, 
-    Captive Portal, 
-    kiwix, 
-    awstats
-
-> * Why keep Kiwix?  - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
-
-
-    kolibri, osm_vector_maps, matomo
-
-
-Set the `iiab/home_url` option to `/books/`. This is the default url for the `calibre-web` service and is to make sure users are sent to the "library" on joining the wifi network. 
-
-
     calibre-web, calibre, captiveportal, kiwix, awstats, 
 
-Change the ``pi_swap_file_size`` setting to 512 if you are planning to use a Pi Zero W or Pi Zero 2 W. 
+- Why keep Kiwix? 
+    - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
 
 
-Change the ``captiveportal_splsh_page`` to `/books/` to make sure users are sent to the "library" after clicking through the splash screen.
+set the iiab)home_url to /books/ to make sure it goes to calibre-web
+And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal. change the pi_swap_file_size size to 512 if planning to use pi zero/2 W. 
+maybe change the hostname and domain to something clever (since it won't ever be on the internet anyway)
+Set captiveportal_splsh_page to /books/ to make sure it goes to calibre-web
 
-#### WiFi setup
-Since this server isn't being routed through the actual internet, you can change the hostname and domain to something clever. For this setup I'm going to set them to `iiab_hostname: ebook` and `iiab_domain: library`. 
-This will make the URL of the service `ebook.library/books/`.
-
-Change the SSID name to be more appropriate for the service you're building. I'm making it explicit that this is free library.
-
-`host_ssid: LittleFreeE-Library`
-
-hostapd is what IIAB uses to create password-protected wifi networks. Since we want this to be an open library we are going to leave `hostapd_secure: False`. But we are going to take this time to change the `hostapd_password:` to something simple that you can remember, because you don't want to leave anything, not even a service that you don't plan on using, with a default password. 
-
-After you've made these changes hit `ctrl+s` and then `ctrl+x` to save and close nano. Click through the rest of the instructions to finish the install. 
+Let it run until it's done installing.
 
 ## Modifications to the systems
 
