@@ -12,9 +12,9 @@ This will build out a Pi to:
 
 This idea started a few years ago with the publication of [HydroponicTrash](https://kolektiva.social/@hydroponictrash#.)'s guide to an ["off-grid internet"](https://anarchosolarpunk.substack.com/p/offgridinternet). They followed it up a little while later with their [guide to a little banned book library](https://anarchosolarpunk.substack.com/p/bannedbooklibrary).
 
-That idea, a focused way distribute information that the State doesn't want distributed, is immediately compelling. 
+That idea, a focused way to distribute information that the State doesn't want distributed, is immediately compelling. 
 
-And HydroponicTrash's ideas *work*. but I wanted to find an easier, non-technical way to do it. 
+And HydroponicTrash's ideas *work*, but I wanted to find an easier, non-technical way to do it. 
 
 I don't think I found a true "non-technical", plug and play method, but I do think I came up with a *less* techie way to do it. 
 
