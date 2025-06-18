@@ -88,12 +88,19 @@ and make sure these are set to `_install: True` and `_enabled: True`.
     - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
 
 
-Set the iiab/home_url to /books/ to make sure it goes to calibre-web
-And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal. change the pi_swap_file_size size to 512 if planning to use pi zero/2 W. 
-Maybe change the hostname and domain to something clever (since it won't ever be on the internet anyway) like `ebook.library`.
+Set the iia_home_url to `/books/` to make sure it goes to calibre-web
+
+And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal.
+
+Change the pi_swap_file_size size to 512 if planning to use pi zero/2 W. 
+
+Maybe change `iiab_hostname` and `iiab_domain` to something clever (since it won't ever be on the internet anyway) like `ebook.library`.
+
 Set captiveportal_splsh_page to /books/ to make sure it goes to calibre-web
 
-Let it run until it's done installing.
+Save the changes to the file and exit Nano, and run sudo iiab.
+
+Let it run by until it's done installing.
 
 ## Modifications to the systems
 
