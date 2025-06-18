@@ -5,7 +5,7 @@ A quick How-To guide to getting an off-grid e-library up and running on a Raspbe
 This will build out a Pi to:
 - host and serve ebooks from Calibre, 
 - have a pleasant UX front end through Calibre-Web,
-- broadcast a wifi network from the Pi that lets users access the front end to read books.
+- broadcast a wifi network from the Pi that lets users access the front end to read and download books.
 
 
 ## Background Talk
@@ -22,7 +22,7 @@ My method is based **HEAVILY** on [internet-in-a-box](https://internet-in-a-box.
 
 The goal with using IIAB is to get the e-library backend services as turnkey as possible to limit the coding needed to get it set up. With everything not focused on delivering and managing books turned off from the IIAB service it should fit on fairly small microSD cards. 
 
-Once this is up an running on one Pi you can clone the microSD card and pop it into any Pi to replicate the library. With the low cost of Pi Zero 2 Ws (or Pis that you get second hand) you can set up multiple copies of the library at a fairly low cost. 
+Once this is up and running on one Pi you can clone the microSD card and pop it into any Pi to replicate the library. With the low cost of Pi Zero 2 Ws (or Pis that you get second hand) you can set up multiple copies of the library at a fairly low cost. 
 
 Since it doesn't matter what Pi you start with it is faster to set this up on a higher-specced pi (like a pi 4 or 5) to get started. 
 
@@ -30,10 +30,10 @@ Since it doesn't matter what Pi you start with it is faster to set this up on a 
 
 ### What you need for setup
 * microSD card (at least 32gb)
-* Raspberry Pi (initial setup should be done on the fastest pi you have access to.)
-* keyboard/mouse/monitor for setup
+* Raspberry Pi (Initial setup should be done on the fastest pi you have access to.)
+* Keyboard/mouse/monitor for setup
 * Ethernet connection for initial IIAB setup
-* Way to install Raspberry Pi OS onto an SD card (this can be another computer, your current Pi that is already set up, etc)
+* Way to install Raspberry Pi OS onto an SD card (this can be another computer, your current Pi that is already set up, etc. I used Blanch)
 * ebooks (preferably epub, this is a BYOBooks project)
 
 
@@ -53,7 +53,7 @@ Be aware that the IIAB install will take between 6 and 10 GB, so expect to use a
 ### Step one:
  Install the latest version of the Raspberry Pi OS on the fastest Pi you've got (this will make the install much faster).
 1. Use the Raspberry Pi Imager on a Mac or PC to get the microSD card ready with the latest PiOS (64bit). 
-2.  Do not set up wifi on the new installation. Trying to install IIAB over wifi can cause issues, so it's safer to plug the Pi into an ethernet cable during this setup. 
+2. Do not set up wifi on the new installation. Trying to install IIAB over wifi can cause issues, so it's safer to plug the Pi into an ethernet cable during this setup. 
 3. When the Raspberry Pi Imager is finished take the microSD card and put it in the Pi and plug it into start the install process. 
 4. When the install is complete run `sudo apt-get update` and then `sudo apt-get upgrade` to make sure everything is up to date. This will keep you from potentially having to reboot as often during the IIAB install. 
 
@@ -70,7 +70,7 @@ Use the following curl command to start the install process.
 
 During the install be sure to select the Small option. You'll be asked to run `sudo nano /etc/iiab/local_vars.yml` to set your preferences for the install.
 
- Make sure the following options are set to `_install: False` and `_enabled: False`.
+Make sure the following options are set to `_install: False` and `_enabled: False`.
 
     kolibri
     osm_vector_maps 
@@ -78,15 +78,19 @@ During the install be sure to select the Small option. You'll be asked to run `s
 
 and make sure these are set to `_install: True` and `_enabled: True`.
 
-    calibre-web, calibre, captiveportal, kiwix, awstats, 
+    calibre-web, 
+    calibre, 
+    captiveportal, 
+    kiwix, 
+    awstats
 
 - Why keep Kiwix? 
     - You have to keep Kiwix installed and enabled to use the iiab admin console, which you need to do some stuff later
 
 
-set the iiab)home_url to /books/ to make sure it goes to calibre-web
+Set the iiab/home_url to /books/ to make sure it goes to calibre-web
 And make sure you set stuff like the SSID to something you know, set the p/w, set the correct page "/books/" to load after captive portal. change the pi_swap_file_size size to 512 if planning to use pi zero/2 W. 
-maybe change the hostname and domain to something clever (since it won't ever be on the internet anyway)
+Maybe change the hostname and domain to something clever (since it won't ever be on the internet anyway) like `ebook.library`.
 Set captiveportal_splsh_page to /books/ to make sure it goes to calibre-web
 
 Let it run until it's done installing.
@@ -104,7 +108,7 @@ The location of the calibre-web library is set to `/library/calibre-web`, and we
 From the Admin setting page select Database Configuration. 
 Click in the text box and change it to `/library/calibre`. 
 
-When you return to the /books/ page you'll find a copy of Franz Kafka's The Metamorphosis, which is included with Calibre. 
+When you return to the `/books/` page you'll find a copy of Franz Kafka's The Metamorphosis, which is included with Calibre. 
 
 #### Change the default password
 
@@ -137,7 +141,7 @@ If you have a loose assortment of epubs and PDFs then the easiest method will be
 Open the Pi web browser (the globe in the top left corner) and go to `ebook.library:8080`. Login as Admin. 
 The default Admin pw is `changeme`, you need to change it in the settings here.
 
-Select the Calibre library button and you should see a copy of Franz Kafka's Metamorphosis. click the + icon in the top banner and follow the instructions on loading new books. 
+Select the Calibre library button. You should see a copy of Franz Kafka's Metamorphosis. click the + icon in the top banner and follow the instructions on loading new books. 
 
 ### Changes to the IIAB Admin panel
 Open `ebook.library/admin` to go to the Admin page. 
